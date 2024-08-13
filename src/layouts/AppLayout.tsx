@@ -8,6 +8,15 @@ const StyledAppLayout = styled.div`
   grid-template-columns: 26rem 1fr;
   grid-template-rows: auto 1fr;
   height: 100vh;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; // Full width for mobile
+  }
+`;
+const StyledSidebar = styled(Sidebar)`
+  @media (max-width: 768px) {
+    display: none; // Hide sidebar on mobile
+  }
 `;
 
 const Main = styled.main`
@@ -28,7 +37,7 @@ function AppLayout() {
   return (
     <StyledAppLayout>
       <Header />
-      <Sidebar />
+      <StyledSidebar />
       <Main>
         <Container>
           <Outlet />
