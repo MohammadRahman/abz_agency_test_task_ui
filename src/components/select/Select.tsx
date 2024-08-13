@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Controller } from 'react-hook-form';
 import Select from 'react-select';
 
@@ -33,10 +32,10 @@ const customStyles = {
 };
 
 export const SingleSelect = ({ name, control, options }: SelectProps) => {
-  const [selectedOption, setSelectedOption] = useState(null);
-  const handleChange = (selectedOption: any) => {
-    setSelectedOption(selectedOption);
-  };
+  // const [_, setSelectedOption] = useState(null);
+  // const handleChange = (selectedOption: any) => {
+  //   setSelectedOption(selectedOption);
+  // };
   // const { control } = useForm();
   return (
     <>

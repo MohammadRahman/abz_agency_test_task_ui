@@ -20,7 +20,7 @@ export const useUser = () => {
       }
     },
     retry: 3,
-    retryDelay: (attempt) => 120000,
+    retryDelay: () => 120000,
   });
   return { users, isLoading };
 };

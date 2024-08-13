@@ -2,10 +2,6 @@ import axios from 'axios';
 import tokenInterceptor from './interceptors/token.interceptor';
 import errorInterceptor from './interceptors/error.interceptor';
 
-function getLocalStorageToken() {
-  return localStorage.getItem('token');
-}
-
 // export const httpCommon = (url: any) => {
 //   const instance = axios.create({
 //     baseURL: url,
@@ -54,6 +50,7 @@ function getLocalStorageToken() {
 //   );
 //   return instance;
 // };
+
 export const httpCommon = (url: string, useInterceptor: boolean) => {
   const instance = axios.create({
     baseURL: url,
@@ -64,7 +61,7 @@ export const httpCommon = (url: string, useInterceptor: boolean) => {
   if (useInterceptor) {
     instance.interceptors.response.use(
       (response) => response,
-      errorInterceptor
+      errorInterceptor,
     );
   }
   return instance;

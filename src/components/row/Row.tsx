@@ -1,6 +1,9 @@
 import styled, { css } from 'styled-components';
 
-const Row = styled.div`
+type RowProps = {
+  type: string;
+};
+const Row = styled.div<RowProps>`
   display: flex;
 
   ${(props) =>

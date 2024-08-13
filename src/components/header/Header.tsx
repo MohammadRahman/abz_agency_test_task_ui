@@ -19,6 +19,7 @@ const StyledHeader = styled.header`
 function Header() {
   const [fetchToken, setFetchToken] = useState(false);
   const { token } = usetoken(fetchToken);
+  console.log(token);
   return (
     <StyledHeader>
       <Button onClick={() => setFetchToken(true)}>Request Token</Button>

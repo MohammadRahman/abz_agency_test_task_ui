@@ -14,7 +14,7 @@ const selectOptions = [
   { label: 'Designer', value: 4 },
 ];
 type CreateUserFormProps = {
-  onCloseModal: () => void;
+  onCloseModal?: () => void;
 };
 const CreateUserForm = ({ onCloseModal }: CreateUserFormProps) => {
   // const { token} = usetoken();
@@ -33,10 +33,10 @@ const CreateUserForm = ({ onCloseModal }: CreateUserFormProps) => {
     createUser(
       { ...values, photo: file },
       {
-        onSuccess: (data) => {
+        onSuccess: () => {
           reset(), onCloseModal?.();
         },
-      }
+      },
     );
   }
 

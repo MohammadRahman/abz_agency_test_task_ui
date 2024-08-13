@@ -1,7 +1,11 @@
-const network = { status: null };
+interface NetworkStatus {
+  status: string | null;
+}
+
+const network: NetworkStatus = { status: null };
 
 window.addEventListener('load', () => {
-  const updateOnlineStatus = (event: any) => {
+  const updateOnlineStatus = (event: Event) => {
     network.status = navigator.onLine ? 'online' : 'offline';
     console.log(`Event: ${event.type}; Status: ${network.status}`);
   };

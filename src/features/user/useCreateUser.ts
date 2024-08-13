@@ -26,7 +26,7 @@ export function useCreateUser() {
         throw new Error('No access token found');
       }
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['users'] });
       toast.success('New user created successfully.');
     },
