@@ -1,6 +1,6 @@
 import { httpCommon } from '../http-common';
 
-const url = 'http://localhost:3000/v1';
+const url = 'http://34.49.101.155/v1';
 const baseUrl = httpCommon(url, true);
 
 function getToken() {
