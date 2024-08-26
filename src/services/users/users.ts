@@ -1,6 +1,6 @@
 import { httpCommon } from '../http-common';
 
-const url = 'http://34.49.101.155/v1';
+const url = 'https://aprikt.online/v1';
 const baseUrl = httpCommon(url, true);
 
 function getUsers() {
