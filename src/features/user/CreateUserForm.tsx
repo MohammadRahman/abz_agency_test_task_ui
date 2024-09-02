@@ -27,7 +27,6 @@ const CreateUserForm = ({ onCloseModal }: CreateUserFormProps) => {
     formState: { errors },
     reset,
     control,
-    watch,
   } = useForm();
 
   // Watch form values and store them in localStorage
