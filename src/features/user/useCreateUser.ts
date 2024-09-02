@@ -6,7 +6,7 @@ import { userService } from '../../services/users/users';
 export function useCreateUser() {
   const queryClient = useQueryClient();
 
-  const { mutate: createUser } = useMutation({
+  const { mutate: createUser, isPending: isCreating } = useMutation({
     mutationKey: ['user'],
     mutationFn: async (data: any) => {
       const accessToken = tokenService.getLocalStorageToken();
@@ -34,5 +34,5 @@ export function useCreateUser() {
       toast.error(error.message);
     },
   });
-  return { createUser };
+  return { createUser, isCreating };
 }

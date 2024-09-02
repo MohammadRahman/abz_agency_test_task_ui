@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 export type UserListProps = {
-  id: number;
+  _id: number;
   name: string;
   email: string;
   position_id: number;
@@ -36,12 +37,22 @@ const StyledImg = styled.div`
   background-position: center;
   border-radius: 50%;
 `;
-const UserList = ({ id, name, email, position_id, photo }: UserListProps) => {
+const UserList = ({
+  _id: id,
+  name,
+  email,
+  position_id,
+  photo,
+}: UserListProps) => {
   console.log({ id, name, email, position_id, photo });
   return (
     <StyledList key={id}>
       <StyledPhoto>
-        <StyledImg style={{ backgroundImage: `url(${photo})` }} />
+        <StyledImg
+          style={{
+            backgroundImage: `url(${photo})`,
+          }}
+        />
       </StyledPhoto>
       <StyledUserInfo>
         <h4>{name}</h4>

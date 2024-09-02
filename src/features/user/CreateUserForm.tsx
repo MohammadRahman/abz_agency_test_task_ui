@@ -6,6 +6,8 @@ import Button from '../../components/button/Button';
 import { SingleSelect } from '../../components/select/Select';
 import FileInput from '../../components/form/FileInput';
 import { useCreateUser } from './useCreateUser';
+import { tokenService } from '../../services/token/token';
+import { useEffect } from 'react';
 
 const selectOptions = [
   { label: 'Lawer', value: 1 },
@@ -18,14 +20,26 @@ type CreateUserFormProps = {
 };
 const CreateUserForm = ({ onCloseModal }: CreateUserFormProps) => {
   // const { token} = usetoken();
-  const { createUser } = useCreateUser();
+  const { createUser, isCreating } = useCreateUser();
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
     control,
+    watch,
   } = useForm();
+
+  // Watch form values and store them in localStorage
+  // const formValues = watch();
+
+  // Load form values from localStorage when the component mounts
+  useEffect(() => {
+    const storedValues = localStorage.getItem('userFormValues');
+    if (storedValues) {
+      reset(JSON.parse(storedValues));
+    }
+  }, [reset]);
 
   async function handleCreateUser(values: any) {
     const file = values.photo[0];
@@ -35,6 +49,11 @@ const CreateUserForm = ({ onCloseModal }: CreateUserFormProps) => {
       {
         onSuccess: () => {
           reset(), onCloseModal?.();
+          localStorage.removeItem('userFormValues');
+          tokenService.deleteLocalStorageToken();
+        },
+        onError: () => {
+          localStorage.setItem('userFormValues', JSON.stringify(values)); // Save form values on error
         },
       },
     );
@@ -78,7 +97,7 @@ const CreateUserForm = ({ onCloseModal }: CreateUserFormProps) => {
                 Cancel
               </Button>
               <Button variation="primary" type="submit">
-                Save User
+                {isCreating ? 'Loading...' : 'Save User'}
               </Button>
             </div>
           </div>

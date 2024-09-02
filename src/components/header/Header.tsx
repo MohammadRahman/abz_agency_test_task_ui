@@ -3,7 +3,7 @@ import Button from '../button/Button';
 import { Modal } from '../modal/Modal';
 import CreateUserForm from '../../features/user/CreateUserForm';
 import { usetoken } from '../../features/token/useToken';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const StyledHeader = styled.header`
   background-color: var(--color-grey-0);
@@ -18,8 +18,16 @@ const StyledHeader = styled.header`
 
 function Header() {
   const [fetchToken, setFetchToken] = useState(false);
-  const { token } = usetoken(fetchToken);
-  console.log(token);
+  const { token, isFetched } = usetoken(fetchToken);
+
+  console.log(token, isFetched);
+
+  useEffect(() => {
+    if (isFetched) {
+      setFetchToken(false);
+    }
+  }, [isFetched, fetchToken]);
+
   return (
     <StyledHeader>
       <Button onClick={() => setFetchToken(true)}>Request Token</Button>
