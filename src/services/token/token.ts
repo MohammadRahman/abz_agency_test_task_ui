@@ -1,7 +1,7 @@
 import { httpCommon } from '../http-common';
 
-// const url = 'https://aprikt.online/v1';
-const url = 'http://localhost:3000/v1';
+const url = 'https://aprikt.online/v1';
+// const url = 'http://localhost:3000/v1';
 const baseUrl = httpCommon(url, true);
 
 function getToken() {
